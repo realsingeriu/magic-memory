@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import SingleCard from "./components/SingleCard";
 
 // 카드 이미지
 const cardImages = [
@@ -39,14 +40,7 @@ function App() {
       {/* 카드를 표시하는 그리드 */}
       <div className="card-grid">
         {cards.map((card) => (
-          <div className="card" key={card.id}>
-            <div>
-              {/* 카드의 앞면 */}
-              <img className="front" src={card.src} alt="card front"></img>
-              {/* 카드의 뒷면 */}
-              <img className="back" src="/img/cover.png" alt="card back"></img>
-            </div>
-          </div>
+          <SingleCard card={card} key={card.id} />
         ))}
       </div>
     </div>
