@@ -1,11 +1,11 @@
 import React from 'react';
 import './SingleCard.css';
 
-const SingleCard = ({card}) => {
+const SingleCard = ({card, handleChoice}) => {
   // 클릭 이벤트 핸들러 함수 정의
-  function handleClick() {
-    console.log(card) // 카드 정보를 콘솔에 출력
-  }
+   function handleClick() {
+    handleChoice(card) // 카드 정보를 콘솔에 출력
+   }
   return (
     <div className='card'>
       <div>
