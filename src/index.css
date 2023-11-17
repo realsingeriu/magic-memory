@@ -7,6 +7,7 @@ body {
   margin: 0;
   font-size: 1.5em;
   text-align: center;
-  background: url(/public/img/background.jpg);
+  background: url(/public/img/background.jpg) no-repeat ;
+  background-size: cover;
   color: black;
 }
