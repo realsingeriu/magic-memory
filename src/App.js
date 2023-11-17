@@ -44,7 +44,7 @@ function App() {
   useEffect(() => {
     if (choiceOne && choiceTwo) {
       setDisabled(true); // 다른 선택을 할 수 없도록 한다
-      if (choiceOne.src === choiceTwo.src) {
+      if (choiceOne.src === choiceTwo.src && choiceOne.id !== choiceTwo.id) {
         // 같은 이미지의 카드들만 matched를 true로 업데이트함
         setCards((prevCards) => {
           return prevCards.map((card) => {
