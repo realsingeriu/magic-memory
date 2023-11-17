@@ -19,6 +19,7 @@ function App() {
   const [choiceOne, setChoiceOne] = useState(null); // 처음 선택 카드
   const [choiceTwo, setChoiceTwo] = useState(null); // 두번째 선택 카드
   const [disabled, setDisabled] = useState(false); // 선택할 수 없을 때 true
+  const [wrongAttempts, setWrongAttempts] = useState(0); // 틀린 횟수 설정
 
   //카드 섞기
   const shuffleCards = () => {
@@ -56,6 +57,7 @@ function App() {
         resetTurn();
       } else {
         console.log("틀렸네요.");
+        setWrongAttempts((prevAttempts) => prevAttempts + 1);
         setTimeout(resetTurn, 500);
       }
     }
@@ -74,7 +76,7 @@ function App() {
       <h1>Magic Match</h1>
       {/* "New Game" 버튼 클릭 시 shuffleCards 함수 호출 */}
       <button onClick={shuffleCards}>New Game</button>
-      <h2>틀린 횟수: </h2>
+      <h2>틀린 횟수: {wrongAttempts}</h2>
       {/* 카드를 표시하는 그리드 */}
       <div className="card-grid">
         {cards.map((card) => (
