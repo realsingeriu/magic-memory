@@ -19,7 +19,6 @@ function App() {
   const [choiceOne, setChoiceOne] = useState(null); // 처음 선택 카드
   const [choiceTwo, setChoiceTwo] = useState(null); // 두번째 선택 카드
   const [disabled, setDisabled] = useState(false); // 선택할 수 없을 때 true
-  const [wrongAttempts, setWrongAttempts] = useState(0); // 틀린 횟수 설정
 
   //카드 섞기
   const shuffleCards = () => {
@@ -30,7 +29,9 @@ function App() {
 
     // 섞인 카드를 상태로 설정(저장)하고, 턴 수를 0으로 초기화
     setCards(shuffledCards);
-    setTurns(0);
+    setTurns(0); // 턴수 0
+    setChoiceOne(null);
+    setChoiceTwo(null);
   };
   //카드 선택시 기억하기
   function handleChoice(card) {
@@ -57,8 +58,6 @@ function App() {
         resetTurn();
       } else {
         console.log("틀렸네요.");
-        // 틀렸을경우 카운트 +1씩 올라가도록 설정
-        setWrongAttempts((prevAttempts) => prevAttempts + 1);
         setTimeout(resetTurn, 500);
       }
     }
@@ -71,14 +70,17 @@ function App() {
     setTurns((prev) => prev + 1);
     setDisabled(false);
   };
-
+  // 처음 시작시 설정
+  useEffect(() => {
+    shuffleCards();
+  }, []);
   return (
     <div className="App">
       <h1>Magic Match</h1>
       {/* "New Game" 버튼 클릭 시 shuffleCards 함수 호출 */}
       <button onClick={shuffleCards}>New Game</button>
       {/* 틀린 횟수 설정  */}
-      <h2>틀린 횟수: {wrongAttempts}</h2>
+      <h2>틀린 횟수: {turns}</h2>
       {/* 카드를 표시하는 그리드 */}
       <div className="card-grid">
         {cards.map((card) => (
