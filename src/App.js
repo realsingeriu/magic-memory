@@ -54,7 +54,7 @@ function App() {
         resetTurn();
       } else {
         console.log("틀렸네요.");
-        setTimeout(resetTurn, 1000);
+        setTimeout(resetTurn, 500);
       }
     }
   }, [choiceOne, choiceTwo, setCards]);
