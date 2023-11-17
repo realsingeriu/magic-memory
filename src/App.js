@@ -16,8 +16,9 @@ function App() {
   // 카드와 턴 수 스테이트 만들기
   const [cards, setCards] = useState([]); //카드 상태
   const [turns, setTurns] = useState(0); // 턴 수 상태
-  const [choiceOne, setChoiceOne] = useState(null);
-  const [choiceTwo, setChoiceTwo] = useState(null);
+  const [choiceOne, setChoiceOne] = useState(null); // 처음 선택 카드
+  const [choiceTwo, setChoiceTwo] = useState(null); // 두번째 선택 카드
+  const [disabled, setDisabled] = useState(false); // 선택할 수 없을 때 true
 
   //카드 섞기
   const shuffleCards = () => {
@@ -40,6 +41,7 @@ function App() {
   //선택들을 비교하기(useEffect)
   useEffect(() => {
     if (choiceOne && choiceTwo) {
+      setDisabled(true); // 다른 선택을 할 수 없도록 한다
       if (choiceOne.src === choiceTwo.src) {
         // 같은 이미지의 카드들만 matched를 true로 업데이트함
         setCards((prevCards) => {
@@ -64,6 +66,7 @@ function App() {
     setChoiceOne(null);
     setChoiceTwo(null);
     setTurns((prev) => prev + 1);
+    setDisabled(false);
   };
 
   return (
@@ -71,7 +74,7 @@ function App() {
       <h1>Magic Match</h1>
       {/* "New Game" 버튼 클릭 시 shuffleCards 함수 호출 */}
       <button onClick={shuffleCards}>New Game</button>
-
+      <h2>틀린 횟수: </h2>
       {/* 카드를 표시하는 그리드 */}
       <div className="card-grid">
         {cards.map((card) => (
@@ -80,6 +83,7 @@ function App() {
             key={card.id}
             handleChoice={handleChoice}
             flipped={card === choiceOne || card === choiceTwo || card.matched}
+            disabled={disabled}
           />
         ))}
       </div>

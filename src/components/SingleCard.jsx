@@ -1,10 +1,12 @@
 import React from 'react';
 import './SingleCard.css';
 
-const SingleCard = ({card, handleChoice, flipped}) => {
+const SingleCard = ({card, handleChoice, flipped, disabled}) => {
   // 클릭 이벤트 핸들러 함수 정의
    function handleClick() {
+    if (disabled === false) {
     handleChoice(card) // 카드 정보를 콘솔에 출력
+  }
    }
   return (
     <div className='card'>
