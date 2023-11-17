@@ -57,6 +57,7 @@ function App() {
         resetTurn();
       } else {
         console.log("틀렸네요.");
+        // 틀렸을경우 카운트 +1씩 올라가도록 설정
         setWrongAttempts((prevAttempts) => prevAttempts + 1);
         setTimeout(resetTurn, 500);
       }
@@ -76,6 +77,7 @@ function App() {
       <h1>Magic Match</h1>
       {/* "New Game" 버튼 클릭 시 shuffleCards 함수 호출 */}
       <button onClick={shuffleCards}>New Game</button>
+      {/* 틀린 횟수 설정  */}
       <h2>틀린 횟수: {wrongAttempts}</h2>
       {/* 카드를 표시하는 그리드 */}
       <div className="card-grid">
