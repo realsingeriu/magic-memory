@@ -16,3 +16,12 @@ button:hover {
   background: #c23866;
   color: #fff;
 }
+.card-grid {
+  margin-top: 40px;
+  /* display로 grid 설정해야 아래 자식 grid를 설정 할 수 있다. */
+  display: grid;
+  /* 1fr은 비율 이다 1대 1대 1대 1대 비율로 설정 */
+  grid-template-columns: 1fr 1fr 1fr 1fr; 
+  /* 사이 간격이 20px */
+  grid-gap: 20px;
+}
