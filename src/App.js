@@ -75,7 +75,12 @@ function App() {
       {/* 카드를 표시하는 그리드 */}
       <div className="card-grid">
         {cards.map((card) => (
-          <SingleCard card={card} key={card.id} handleChoice={handleChoice} />
+          <SingleCard
+            card={card}
+            key={card.id}
+            handleChoice={handleChoice}
+            flipped={card === choiceOne || card === choiceTwo || card.matched}
+          />
         ))}
       </div>
     </div>
